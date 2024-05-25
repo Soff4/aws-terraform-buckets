@@ -93,8 +93,8 @@ resource "aws_sns_topic" "example_topic" {
 resource "aws_sns_topic_subscription" "example_subscription" {
   provider  = aws.localstack
   topic_arn = aws_sns_topic.example_topic.arn
-  protocol  = "email"
-  endpoint  = "example@example.com"
+  protocol  = "lambda"
+  endpoint  = aws_lambda_function.s3_copy_lambda.arn
 }
 
 resource "aws_s3_bucket_notification" "s3_start_notification_with_sns" {
